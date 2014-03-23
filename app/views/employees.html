@@ -1,0 +1,30 @@
+<div class="form-group" class="col-md-12">
+  <label for="clientName">Username</label>
+  <input type="text" class="form-control" id="username" ng-model="client.NAME">
+</div>
+<div class="form-group" class="col-md-12" >
+  <label for="ClientID">Password</label>
+  <input type="text" class="form-control" id="password" ng-model="client.ID">
+</div>
+<button type="button" class="btn btn-primary btn-block" ng-click="createClient(client)"><b>Opprett ny ansatt bruker</b></button>
+<div class="row">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a>Brukernavn</a></th>
+        <th><a>Passord</a></th>
+        <th><a>Administrer</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="employee in employees">
+        <td>{{employee.Brukernavn}}</td>
+        <td>{{employee.Passord}}</td>
+        <td>
+          <button type="button" class="btn-xs btn-danger" ng-click="deleteEmployee(employee.Brukernavn)"><span>Slett</span></button>
+          <button type="button" class="btn-xs btn-primary" ng-click="openModal(employee)"><span>Rediger</span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
