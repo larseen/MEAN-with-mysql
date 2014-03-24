@@ -1,0 +1,32 @@
+<div class="form-group" class="col-md-12">
+  <label for="roomName">Rom navn</label>
+  <input type="text" class="form-control" id="username" ng-model="room.name">
+</div>
+<div class="form-group" class="col-md-12" >
+  <label for="roomID">Kapasitet</label>
+  <input type="text" class="form-control" id="password" ng-model="room.capacity">
+</div>
+<button type="button" class="btn btn-primary btn-block" ng-click="createRoom(room)"><b>Opprett profil for nytt grupperom</b></button>
+<div class="row">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a>ID</a></th>
+        <th><a>Navn</a></th>
+        <th><a>Kapasitet</a></th>
+        <th><a>Administrer</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="room in rooms">
+        <td>{{room.roomID}}</td>
+        <td>{{room.name}}</td>
+        <td>{{room.capacity}}</td>
+        <td>
+          <button type="button" class="btn-xs btn-danger" ng-click="deleteRoom(room.roomID)"><span>Slett</span></button>
+          <button type="button" class="btn-xs btn-primary" ng-click="updateRoom(room)"><span>Rediger</span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

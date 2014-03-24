@@ -10,21 +10,9 @@ angular.module('dbApp', [
 ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/main', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/clientEditView', {
-        templateUrl: 'views/clienteditview.html',
-        controller: 'ClienteditviewCtrl'
-      })
-      .when('/database', {
-        templateUrl: 'views/database.html',
-        controller: 'DatabaseCtrl'
-      })
-      .when('/meetingrooms', {
-        templateUrl: 'views/meetingrooms.html',
-        controller: 'MeetingroomsCtrl'
+      .when('/rooms', {
+        templateUrl: 'views/rooms.html',
+        controller: 'roomsControl'
       })
       .when('/appointments', {
         templateUrl: 'views/appointments.html',
@@ -37,6 +25,18 @@ angular.module('dbApp', [
       .when('/home', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
+      })
+      .when('/createAppointment', {
+        templateUrl: 'views/createappointment.html',
+        controller: 'CreateappointmentCtrl'
+      })
+      .when('/editEmployee', {
+        templateUrl: 'views/editemployee.html',
+        controller: 'EditemployeeCtrl'
+      })
+      .when('/groups', {
+        templateUrl: 'views/groups.html',
+        controller: 'GroupsCtrl'
       })
       .otherwise({
         redirectTo: '/home'

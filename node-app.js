@@ -9,6 +9,6 @@ app.use(express.static('./app'));
 // Bootstrap models
 
 // Bootstrap routes
-require('./routes/test')(app);
+require('./routes/dataRoutes')(app);
 
-app.listen(3008);
+app.listen(8000);

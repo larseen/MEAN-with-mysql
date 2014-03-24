@@ -1,4 +1,13 @@
 
+.myClass {
+display: block !important;
+font-size: 32px !important; 
+font-weight: bold !important;
+height: 64px !important;
+padding-left: 5%;
+text-decoration: none;
+}
+
 .nav {
   padding-right: 10%;
 }

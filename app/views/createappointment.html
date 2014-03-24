@@ -1,0 +1,65 @@
+<div class="container">
+	<form class="form-horizontal">
+	<fieldset>
+
+	<!-- Form Name -->
+	<legend>Create Appointment</legend>
+
+	<!-- Select Basic -->
+	<div class="control-group">
+	  <label class="control-label" for="selectbasic">Møterom</label>
+	  <div class="controls">
+	    <select id="selectbasic" name="selectbasic" class="input-xlarge">
+        	<option>{{rooms}}</option>
+	    </select>
+	  </div>
+	</div>
+
+	<!-- Text input-->
+	<div class="control-group">
+	  <label class="control-label" for="date">Dato</label>
+	  <div class="controls">
+	    <input id="date" name="date" type="text" placeholder="DD-MM-YYYY" class="input-xlarge">
+	    
+	  </div>
+	</div>
+
+	<!-- Text input-->
+	<div class="control-group">
+	  <label class="control-label" for="startTime">Starttid</label>
+	  <div class="controls">
+	    <input id="startTime" name="startTime" type="text" placeholder="HH-MM" class="input-xlarge">
+	    
+	  </div>
+	</div>
+
+	<!-- Text input-->
+	<div class="control-group">
+	  <label class="control-label" for="endTime">Sluttid</label>
+	  <div class="controls">
+	    <input id="endTime" name="endTime" type="text" placeholder="HH-MM" class="input-xlarge">
+	    
+	  </div>
+	</div>
+
+	<!-- Select Multiple -->
+	<div class="control-group">
+	  <label class="control-label" for="participants">Velg deltagere</label>
+	  <div class="controls">
+	    <select id="participants" name="participants" class="input-xlarge" multiple="multiple">
+	      <option>{{employees}}</option>
+	    </select>
+	  </div>
+	</div>
+
+	<!-- Textarea -->
+	<div class="control-group">
+	  <label class="control-label" for="description">Beskrivelse</label>
+	  <div class="controls">                     
+	    <textarea id="description" name="description">default text</textarea>
+	  </div>
+	</div>
+
+	</fieldset>
+	</form>
+</div>

@@ -22,11 +22,11 @@
   <body ng-app="dbApp">
     <div class="header">
       <ul class="nav nav-pills pull-right">
-        <li ng-class="{active: location=='/home'}"><a ng-href="#/home">Home</a></li>
-        <li ng-class="{active: location=='/database'}"><a ng-href="#/database">Database</a></li>
-        <li ng-class="{active: location=='/meetingrooms'}"><a ng-href="#/meetingrooms">Meeting Rooms</a></li>
+        <li ng-class="{active: location=='/createAppointment'}"><a ng-href="#/createAppointment">Create Appointment</a></li>
         <li ng-class="{active: location=='/appointments'}"><a ng-href="#/appointments">Appointments</a></li>
+        <li ng-class="{active: location=='/rooms'}"><a ng-href="#/rooms">Meeting Rooms</a></li>
         <li ng-class="{active: location=='/employees'}"><a ng-href="#/employees">Employees</a></li>
+        <li ng-class="{active: location=='/groups'}"><a ng-href="#/groups">Groups</a></li>
       </ul>
       <h3 class="text-muted">DB3</h3>
     </div>
@@ -58,6 +58,7 @@
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -66,18 +67,19 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/lib/ui-bootstrap-tpls-0.6.0.min.js"></script>
-
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/database.js"></script>
         <script src="scripts/services/employeeResourceFactory.js"></script>
-        <script src="scripts/services/testClientApi.js"></script>
+        <script src="scripts/services/roomResourceFactory.js"></script>
+        <script src="scripts/services/groupResourceFactory.js"></script>
         <script src="scripts/controllers/clientEditView.js"></script>
-        <script src="scripts/controllers/meetingrooms.js"></script>
+        <script src="scripts/controllers/rooms.js"></script>
+        <script src="scripts/services/appointmentResourceFactory.js"></script>
         <script src="scripts/controllers/appointments.js"></script>
         <script src="scripts/controllers/employees.js"></script>
         <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/createAppointment.js"></script>
+        <script src="scripts/controllers/editEmployee.js"></script>
+        <script src="scripts/controllers/groups.js"></script>
         <!-- endbuild -->
 </body>
 </html>

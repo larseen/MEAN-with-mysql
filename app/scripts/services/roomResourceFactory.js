@@ -1,25 +1,25 @@
 'use strict';
 
-angular.module('dbApp').factory('employeeFactory', function($resource) {
+angular.module('dbApp').factory('roomFactory', function($resource) {
         
-    return $resource('employees/:employeeID',
-        { 
-            employeeID:   '@employeeID',
+    return $resource('rooms/:roomID',
+        {
+            roomID:   '@roomID',
         }, 
         {
             'update'		: {
              	method		: 'PUT'
             },
-            'getEmployee'	: {
+            'getRoom'	: {
              	method		: 'GET',
              	isArray		: true,
-             	 params		: {employeeID: '@employeeID'}
+             	 params		: {roomID: '@roomID'}
             },
-            'getEmployees'  : {
+            'getRooms'  : {
             	method		: 'GET',
             	isArray		: true
             },
-            'createEmployee': {
+            'createRoom': {
             	method		: 'POST',
             	isArray		: false,
                 params      : {}

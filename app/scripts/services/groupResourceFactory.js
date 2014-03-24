@@ -1,25 +1,25 @@
 'use strict';
 
-angular.module('dbApp').factory('employeeFactory', function($resource) {
+angular.module('dbApp').factory('groupFactory', function($resource) {
         
-    return $resource('employees/:employeeID',
+    return $resource('group/:groupID',
         { 
-            employeeID:   '@employeeID',
+            groupID:   '@groupID',
         }, 
         {
             'update'		: {
              	method		: 'PUT'
             },
-            'getEmployee'	: {
+            'getGroup'	: {
              	method		: 'GET',
              	isArray		: true,
-             	 params		: {employeeID: '@employeeID'}
+             	 params		: {groupID: '@groupID'}
             },
-            'getEmployees'  : {
+            'getGroups'  : {
             	method		: 'GET',
             	isArray		: true
             },
-            'createEmployee': {
+            'createGroup': {
             	method		: 'POST',
             	isArray		: false,
                 params      : {}

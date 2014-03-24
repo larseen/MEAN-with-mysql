@@ -1,30 +1,33 @@
 'use strict';
 
 angular.module('dbApp')
-  .controller('EmployeesCtrl', function ($scope, employeeFactory, $modalProvider, $log) {
+  .controller('roomsControl', function ($scope, roomFactory, $log) {
     
-    $scope.employees = []; // All employees
-    $scope.employee; // Employee that is beeing edited
+    $scope.rooms = []; // All rooms
+    $scope.room; // Room that is beeing "proccessed"
 
     $scope.init = function(){
         console.log("init");
-        $scope.employees = employeeFactory.getEmployees(function(){
+        $scope.rooms = roomFactory.getRooms(function(){
     	});
+    	console.log($scope.rooms);
     };
 
- 	$scope.deleteEmployee = function(ID){
-    $scope.client = employeeFactory.getEmployee({employeeID: ID}, function(){
-        $scope.client = $scope.client[0];
-        $scope.client.$remove(function(){
+ 	$scope.deleteRoom = function(ID){
+    $scope.room = roomFactory.getRoom({roomID: ID}, function(){
+        $scope.room = $scope.room[0];
+        console.log($scope.room);
+        $scope.room.$remove(function(){
         });
     });
     setTimeout($scope.init(),1000); 
     };
 
-    $scope.createEmployee = function(employee){
-    	employee.employeeID = null;
-        console.log(employee)
-        employeeFactory.createEmployee(employee, function() {
+    $scope.createRoom = function(room){
+    	room.roomID = null;
+    	room.free = 1;
+        console.log(room)
+        roomFactory.createRoom(room, function() {
 
         });
     setTimeout($scope.init(),5000); 
