@@ -1,3 +1,6 @@
+.modal {
+display: block;
+}
 
 .myClass {
 display: block !important;

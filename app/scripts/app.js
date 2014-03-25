@@ -38,6 +38,14 @@ angular.module('dbApp', [
         templateUrl: 'views/groups.html',
         controller: 'GroupsCtrl'
       })
+      .when('/groupEdit', {
+        templateUrl: 'views/groupedit.html',
+        controller: 'GroupeditCtrl'
+      })
+      .when('/groupEmployee', {
+        templateUrl: 'views/groupemployee.html',
+        controller: 'GroupemployeeCtrl'
+      })
       .otherwise({
         redirectTo: '/home'
       });

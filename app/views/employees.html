@@ -1,3 +1,4 @@
+<h2>Opprett ny ansatt</h2>
 <div class="form-group" class="col-md-12">
   <label for="employeeName">Username</label>
   <input type="text" class="form-control" id="username" ng-model="employee.username">
@@ -12,8 +13,9 @@
     <thead>
       <tr>
         <th><a>ID</a></th>
-        <th><a>username</a></th>
+        <th><a>Brukernavn</a></th>
         <th><a>Passord</a></th>
+        <th><a>Grupper</a></th>
         <th><a>Administrer</a></th>
       </tr>
     </thead>
@@ -21,10 +23,13 @@
       <tr ng-repeat="employee in employees">
         <td>{{employee.employeeID}}</td>
         <td>{{employee.username}}</td>
-        <td>{{employee.Passord}}</td>
+        <td>{{employee.password}}</td>
+        <td>{{employee.name}}</td>
         <td>
+          <button type="button" class="btn-xs btn-warning" ng-click="removeGroup(employee.employeeID)"><span>Fjern gruppe</span></button>
           <button type="button" class="btn-xs btn-danger" ng-click="deleteEmployee(employee.employeeID)"><span>Slett</span></button>
           <button type="button" class="btn-xs btn-primary" ng-click="updateEmployee(employee)"><span>Rediger</span></button>
+          <button type="button" class="btn-xs btn-info" ng-click="employeeGroup(employee)"><span>Grupper</span></button>
         </td>
       </tr>
     </tbody>

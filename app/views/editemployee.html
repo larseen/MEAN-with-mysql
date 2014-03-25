@@ -1,12 +1,17 @@
-<div>
 	<div class="modal-header">
 	    <h2>Endre Ansatt</h2>
 	</div>
 	<div class="modal-body">
-        <b>{{employee}}</b>
+        <div class="form-group" class="col-md-12">
+            <label for="employeeName">Username</label>
+            <input type="text" class="form-control" id="username" ng-model="employee.username">
+        </div>
+        <div class="form-group" class="col-md-12" >
+            <label for="employeeID">Password</label>
+            <input type="text" class="form-control" id="password" ng-model="employee.password">
+        </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="Endre()">Endre</button>
-        <button class="btn btn-warning" ng-click="Avbryt()">Avbryt</button>
+        <button class="btn btn-primary" ng-click="alter()">Endre</button>
+        <button class="btn btn-warning" ng-click="cancel()">Avbryt</button>
     </div>
-</div>

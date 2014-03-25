@@ -2,13 +2,15 @@
 
 angular.module('dbApp').factory('groupFactory', function($resource) {
         
-    return $resource('group/:groupID',
+    return $resource('groups/:groupID',
         { 
             groupID:   '@groupID',
         }, 
         {
-            'update'		: {
-             	method		: 'PUT'
+            'editGroup'		: {
+             	method		: 'POST',
+                isArray     : false,
+                params      : {groupID: '@groupID'} 
             },
             'getGroup'	: {
              	method		: 'GET',

@@ -7,7 +7,8 @@ module.exports = function(app) {
 	app.get('/employees', employees.all);
 	app.post('/employees', employees.create);
 	app.get('/employees/:employeeID', employees.show);
-	//app.put('/employees/:employeeID', employees.update);
+	app.post('/employees/:employeeID', employees.update);
+	app.post('/employees/:employeeID/:groupID', employees.addGroup);
 	app.del('/employees/:employeeID', employees.destroy);
 	
 	// Finish with setting up the employeeID paramater
@@ -41,7 +42,7 @@ module.exports = function(app) {
 	app.get('/groups', groups.all);
 	app.post('/groups', groups.create);
 	app.get('/groups/:groupID', groups.show);
-	//app.put('/groups/:groupID', groups.update);
+	app.post('/groups/:groupID', groups.update);
 	app.del('/groups/:groupID', groups.destroy);
 	
 	// Finish with setting up the groupID paramater

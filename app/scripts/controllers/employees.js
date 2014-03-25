@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('dbApp')
-  .controller('EmployeesCtrl', function ($scope, employeeFactory, $modalProvider, $log) {
+  .controller('EmployeesCtrl', function ($scope, employeeFactory, $modal, $log, groupFactory) {
     
     $scope.employees = []; // All employees
     $scope.employee; // Employee that is beeing edited
+    $scope.groups = [] // All groups
 
     $scope.init = function(){
         console.log("init");
         $scope.employees = employeeFactory.getEmployees(function(){
-    	});
+        });
+        $scope.groups = groupFactory.getGroups(function(){
+        });
+        console.log($scope.groups);
+        console.log($scope.employees);
     };
 
  	$scope.deleteEmployee = function(ID){
@@ -18,7 +23,7 @@ angular.module('dbApp')
         $scope.client.$remove(function(){
         });
     });
-    setTimeout($scope.init(),1000); 
+    setTimeout($scope.init(),5000);
     };
 
     $scope.createEmployee = function(employee){
@@ -27,7 +32,22 @@ angular.module('dbApp')
         employeeFactory.createEmployee(employee, function() {
 
         });
-    setTimeout($scope.init(),5000); 
+    setTimeout($scope.init(),5000);
+    };
+
+    $scope.editEmployee = function(employee){
+        console.log(employee)
+        employeeFactory.editEmployee(employee, function() {
+
+        });
+    setTimeout($scope.init(),5000);
+    };
+
+    $scope.groupEmployee = function(groupEmployee){
+        console.log(groupEmployee)
+        employeeFactory.groupEmployee(groupEmployee, function() {
+        });
+    setTimeout($scope.init(),5000);
     };
 
     $scope.updateEmployee = function(employee){
@@ -40,15 +60,38 @@ angular.module('dbApp')
                 }
             }
         });
+        console.log(modalInstance);
         console.log('modal opened');
         modalInstance.result.then(function (response) {
-      $scope.employee = response;
+        $scope.editEmployee(response);
+    }, function () {
+      $log.info('Modal dismissed at');
+        });
+    };
+
+    $scope.employeeGroup = function(employee){
+        var returnObject= {};
+        returnObject.employeeID = employee.employeeID;
+        var groups = $scope.groups;
+        var modalInstance = $modal.open({
+          templateUrl: 'views/groupemployee.html',
+          controller: 'GroupemployeeCtrl',
+            resolve: {
+                groups: function () {   //sends the employee to the controller
+                    return groups;
+                }
+            }
+        });
+        console.log('modal opened');
+        modalInstance.result.then(function (response) {
+            returnObject.groupID = response.groupID;
+            $scope.groupEmployee(returnObject);
     }, function () {
       $log.info('Modal dismissed at');
         });
     };
 
 
-    $scope.init();
+    setTimeout($scope.init(),5000);
 
   });

@@ -41,6 +41,21 @@ exports.create = function(req, res) {
     });
 };
 
+/**
+* Update a group
+**/
+exports.update = function(req, res) {
+    var group = req.body;
+    console.log(group);
+    db.query('UPDATE calendar.group SET ? WHERE groupID='+group.groupID+';', group, function(err, rows){
+        if (err) {
+            throw err;
+        } else {
+            res.jsonp(rows);
+        }
+    });
+};
+
 
 /**
 * Delete a group

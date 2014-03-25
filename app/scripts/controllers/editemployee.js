@@ -5,15 +5,16 @@ angular.module('dbApp')
    
 
    $scope.employee = employee;
+   console.log($scope.employee);	
 
-
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
+  $scope.alter = function () {
+  	console.log($scope.employee);
+    $modalInstance.close($scope.employee);
   };
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+
 
   });
