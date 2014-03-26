@@ -11,7 +11,8 @@ module.exports = function(app) {
 	app.post('/employees/:employeeID/:groupID', employees.addGroup);
 	app.get('/employees/:employeeID/:groupID', employees.removeGroup);
 	app.del('/employees/:employeeID', employees.destroy);
-	
+	app.post('/employees/:employeeID/:appointmentID/status', employees.invite);
+
 	// Finish with setting up the employeeID paramater
 	app.param('employeeID', employees.employee);
 
@@ -22,6 +23,7 @@ module.exports = function(app) {
 	app.get('/appointments/:appointmentID', appointments.show);
 	//app.put('/appointments/:appointmentID', appointments.update);
 	app.del('/appointments/:appointmentID', appointments.destroy);
+	app.get('/appointments/:appointmentID/:employeeID', appointments.createdBy);
 	app.post('/appointments/latest', appointments.latestID);
 	// Finish with setting up the appointmentID paramater
 	app.param('appointmentID', appointments.appointment);
@@ -48,5 +50,8 @@ module.exports = function(app) {
 	
 	// Finish with setting up the groupID paramater
 	app.param('groupID', groups.group);
+
+	var employeeGroups = require('../api/groupEmployeeAPI')
+	app.get('/groupEmployees/:groupID', employeeGroups.getEmployeeIDs);
 
 };

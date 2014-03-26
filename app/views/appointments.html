@@ -11,9 +11,8 @@
                     <th><a href="" ng-click="predicate = 'appointmentname'; reverse=!reverse">Dato</a></th>
                     <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Start tid</a></th>
                     <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Slutt tid</a></th>
-                    <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Deltagere</a></th>
                     <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Møterom</a></th>
-                    <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Beskrivelse</a></th>
+                    <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse"></a></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,9 +21,8 @@
                     <td>{{appointment.date  | date:'yyyy-MM-dd'}}</td>
                     <td>{{appointment.starttime | date:'HH:mm'}}</td>
                     <td>{{appointment.endtime | date:'HH:mm'}}</td>
-                    <td>{{appointment.participant}}</td>
                     <td>{{room.name}}</td>
-                    <td>{{appointment.desc}}</td>
+                    <td><button type="button" class="btn-xs btn-primary" ng-click="checkStatus(appointment)"><span>Status</span></button></td>
                 </tr>
             </tbody>
         </table>

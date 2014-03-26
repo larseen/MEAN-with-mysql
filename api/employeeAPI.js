@@ -42,6 +42,23 @@ exports.addGroup = function(req, res) {
     });
 };
 
+
+/**
+* Invite to appointment
+**/
+exports.invite = function(req, res) {
+    var inviteEmployee= req.body;
+    console.log(inviteEmployee);
+    db.query('INSERT INTO calendar.participants SET ?', inviteEmployee, function(err, rows){
+        if (err) {
+            throw err;
+        } else {
+            res.jsonp(rows);
+        }
+    });
+};
+
+
 /**
 * Removes Group
 **/

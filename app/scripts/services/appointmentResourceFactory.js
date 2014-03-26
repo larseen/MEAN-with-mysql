@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('dbApp').factory('appointmentFactory', function($resource, $q) {
+angular.module('dbApp').factory('appointmentFactory', function($resource) {
         
-    return $resource('appointments/:appointmentID/:latest',
+    return $resource('appointments/:appointmentID/:latest/:employeeID',
         { 
             appointmentID:   '@appointmentID',
             latest:          '@latest',
+            employeeID:      '@employeeID',
         }, 
         {
             'update'		: {
@@ -25,6 +26,11 @@ angular.module('dbApp').factory('appointmentFactory', function($resource, $q) {
             	isArray		: false,
                 params      : {}
             },
+            'createdBy': {
+                method      : 'GET',
+                isArray     : false,
+                params      : {appointmentID: '@appointmentID', employeeID: '@employeeID'}
+            },
             'getLatestID': {
                 method      : 'POST',
                 isArray     : false,
@@ -32,19 +38,5 @@ angular.module('dbApp').factory('appointmentFactory', function($resource, $q) {
             }
         }
     );
-
-    functions.getLatestID = function() {
-        var deferred = $q.defer();
-        appointmentFactory.getLatestID(
-            function(successResponse){
-                console.log("success");
-                deferred.resolve(successResponse);
-            },function(errorResponse){
-                console.log("error");
-                deferred.reject(errorResponse);
-            }
-        );
-    return deferred.promise;
-    }
 
     });

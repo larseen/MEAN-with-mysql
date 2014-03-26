@@ -39,7 +39,27 @@ exports.create = function(req, res) {
     });
 };
 
+/**
+* created By
+**/
+exports.createdBy = function(req, res) {
+    console.log("test");
+    var creator= req.params;
+    console.log(creator);
+    console.log(creator[0]);
+    console.log(creator.appointmentID);
+    db.query('INSERT INTO calendar.createdBy (appointmentID, employeeID) VALUES ('+creator.appointmentID+', '+creator.employeeID+');', function(err, rows, fields){
+        if (err) {
+            throw err;
+        } else {
+            res.jsonp(rows);
+        }
+    });
+};
 
+/**
+* gets latest appointmentID
+**/
 exports.latestID = function(req, res) {
     db.query('SELECT MAX(appointmentID) AS id FROM calendar.appointment;', function(err, rows){
         console.log(rows[0]);
@@ -79,7 +99,8 @@ exports.show = function(req, res) {
 * List all appointments
 **/
 exports.all = function(req, res) {
-    db.query('SELECT * FROM calendar.appointment as appointments', function(err, rows, fields) {
+    db.query('SELECT * FROM calendar.appointment RIGHT JOIN calendar.room ON appointment.bookedID=room.roomID RIGHT JOIN calendar.participants ON appointment.appointmentID=participants.appointmentID RIGHT JOIN calendar.employee ON employee.employeeID=participants.employeeID;', function(err, rows, fields) {
+        console.log(rows);
         if (err) {
             res.render('error', {
                 status: 500

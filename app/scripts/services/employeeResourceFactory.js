@@ -2,10 +2,12 @@
 
 angular.module('dbApp').factory('employeeFactory', function($resource) {
         
-    return $resource('employees/:employeeID/:groupID',
+    return $resource('employees/:employeeID/:groupID/:appointmentID/:status',
         { 
             employeeID:   '@employeeID',
-            groupID:   '@groupID',
+            groupID:      '@groupID',
+            appointmentID:'@appointmentID',
+            status:'@status',
         }, 
         {
             'editEmployee'		: {
@@ -31,6 +33,16 @@ angular.module('dbApp').factory('employeeFactory', function($resource) {
                 method      : 'POST',
                 isArray     : false,
                 params      : {employeeID: '@employeeID', groupID: '@groupID'}
+            },
+            'getEmployeeIDs'  : {
+                method      : 'GET',
+                isArray     : true,
+                params      : {employeeID: 'employeeIDs'}
+            },
+            'inviteEmployee': {
+                method      : 'POST',
+                isArray     : false,
+                params      : {employeeID: '@employeeID', appointmentID: '@appointmentID', status: 'status'}
             },
             'removeGroup': {
                 method      : 'GET',

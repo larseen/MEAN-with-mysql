@@ -25,6 +25,7 @@ exports.group = function(req, res, next, ID) {
     });
 };
 
+
 /**
 * Create a group
 **/
