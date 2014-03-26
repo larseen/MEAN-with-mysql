@@ -31,7 +31,13 @@ angular.module('dbApp').factory('employeeFactory', function($resource) {
                 method      : 'POST',
                 isArray     : false,
                 params      : {employeeID: '@employeeID', groupID: '@groupID'}
+            },
+            'removeGroup': {
+                method      : 'GET',
+                isArray     : false,
+                params      : {employeeID: '@employeeID', groupID: '@groupID'}
             }
         }
     );
     });
+

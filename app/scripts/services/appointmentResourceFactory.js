@@ -2,9 +2,10 @@
 
 angular.module('dbApp').factory('appointmentFactory', function($resource) {
         
-    return $resource('appointments/:appointmentID',
+    return $resource('appointments/:appointmentID/:latest',
         { 
             appointmentID:   '@appointmentID',
+            latest:          '@latest',
         }, 
         {
             'update'		: {
@@ -23,6 +24,11 @@ angular.module('dbApp').factory('appointmentFactory', function($resource) {
             	method		: 'POST',
             	isArray		: false,
                 params      : {}
+            },
+            'getLatestID': {
+                method      : 'POST',
+                isArray     : true,
+                params      : {latest: 'latest'}
             }
         }
     );

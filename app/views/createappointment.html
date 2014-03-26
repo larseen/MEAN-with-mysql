@@ -1,65 +1,56 @@
 <div class="container">
 	<form class="form-horizontal">
-	<fieldset>
-
 	<!-- Form Name -->
 	<legend>Create Appointment</legend>
 
-	<!-- Select Basic -->
-	<div class="control-group">
-	  <label class="control-label" for="selectbasic">Møterom</label>
-	  <div class="controls">
-	    <select id="selectbasic" name="selectbasic" class="input-xlarge">
-        	<option>{{rooms}}</option>
-	    </select>
-	  </div>
+	<div>
+		<label class="control-label" for="creator">Appointment created by:</label>
+		<select ng-model="appointment.creator" class="form-control" ng-options="e.username for e in employees"></select>
 	</div>
 
-	<!-- Text input-->
-	<div class="control-group">
-	  <label class="control-label" for="date">Dato</label>
-	  <div class="controls">
-	    <input id="date" name="date" type="text" placeholder="DD-MM-YYYY" class="input-xlarge">
-	    
-	  </div>
+	<div class="divPadder">
+		<label class="control-label" for="room">Room</label>
+		<select ng-model="appointment.room" class="form-control" ng-options="room.name for room in rooms"></select>
 	</div>
 
-	<!-- Text input-->
-	<div class="control-group">
-	  <label class="control-label" for="startTime">Starttid</label>
-	  <div class="controls">
-	    <input id="startTime" name="startTime" type="text" placeholder="HH-MM" class="input-xlarge">
-	    
-	  </div>
-	</div>
+    <div style="display:inline-block; min-height:300px;" class="divPadder">
+    <label class="control-label" for="date">Date</label>
+      <div class="well" >
+          <datepicker min="minDate" datepicker-popup="yyyy-MM-dd"  ng-model="appointment.date" show-weeks="showWeeks"></datepicker>
+      </div>
+    </div>
 
-	<!-- Text input-->
-	<div class="control-group">
-	  <label class="control-label" for="endTime">Sluttid</label>
-	  <div class="controls">
-	    <input id="endTime" name="endTime" type="text" placeholder="HH-MM" class="input-xlarge">
-	    
-	  </div>
+	<!-- Starttime-->
+	<div>
+
+	    <div class="myTime" ng-model="appointment.starttime" ng-change="changed()" style="display:inline-block;">
+	    	<label class="control-label" for="participants">Start time</label>
+        	<timepicker hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
+  		</div>
+  		  <div class="myTime" ng-model="appointment.endtime" ng-change="changed()" style="display:inline-block;">
+  		  	<label class="control-label" for="participants">End time</label>
+        	<timepicker hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
+  		</div>
 	</div>
 
 	<!-- Select Multiple -->
-	<div class="control-group">
-	  <label class="control-label" for="participants">Velg deltagere</label>
-	  <div class="controls">
-	    <select id="participants" name="participants" class="input-xlarge" multiple="multiple">
-	      <option>{{employees}}</option>
-	    </select>
-	  </div>
+	<div class="divPadder">
+	  <label class="control-label" for="participants">Participants</label>
+	      <select ng-model="appointment.usernames" multiple="multiple" class="form-control" ng-options="employee.username for employee in employees"></select>
+	</div>
+	<div class="divPadder">
+	  <label class="control-label" for="participants">Groups</label>
+	      <select ng-model="appointment.groups" multiple="multiple" class="form-control" ng-options="group.name for group in groups"></select>
 	</div>
 
-	<!-- Textarea -->
-	<div class="control-group">
-	  <label class="control-label" for="description">Beskrivelse</label>
-	  <div class="controls">                     
-	    <textarea id="description" name="description">default text</textarea>
-	  </div>
+	<!-- Text area -->
+	<div class="divPadder">
+	  <label class="control-label" for="desc">Description</label>
+	      <textarea class="form-control" ng-model="appointment.desc" id="desc" type="text" rows="3" class="input-xlarge" ></textarea>
 	</div>
 
-	</fieldset>
 	</form>
+	<div class="divPadder">
+		<button type="button" class="btn btn-primary btn-block" ng-click="createAppointment(appointment)"><b>Create appointment</b></button>
+	</div>
 </div>

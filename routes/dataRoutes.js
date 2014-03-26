@@ -9,6 +9,7 @@ module.exports = function(app) {
 	app.get('/employees/:employeeID', employees.show);
 	app.post('/employees/:employeeID', employees.update);
 	app.post('/employees/:employeeID/:groupID', employees.addGroup);
+	app.get('/employees/:employeeID/:groupID', employees.removeGroup);
 	app.del('/employees/:employeeID', employees.destroy);
 	
 	// Finish with setting up the employeeID paramater
@@ -21,7 +22,7 @@ module.exports = function(app) {
 	app.get('/appointments/:appointmentID', appointments.show);
 	//app.put('/appointments/:appointmentID', appointments.update);
 	app.del('/appointments/:appointmentID', appointments.destroy);
-	
+	app.post('/appointments/latest', appointments.latestID);
 	// Finish with setting up the appointmentID paramater
 	app.param('appointmentID', appointments.appointment);
 

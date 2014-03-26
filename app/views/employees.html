@@ -15,7 +15,7 @@
         <th><a>ID</a></th>
         <th><a>Brukernavn</a></th>
         <th><a>Passord</a></th>
-        <th><a>Grupper</a></th>
+        <th><a>Gruppe</a></th>
         <th><a>Administrer</a></th>
       </tr>
     </thead>
@@ -26,7 +26,7 @@
         <td>{{employee.password}}</td>
         <td>{{employee.name}}</td>
         <td>
-          <button type="button" class="btn-xs btn-warning" ng-click="removeGroup(employee.employeeID)"><span>Fjern gruppe</span></button>
+          <button type="button" class="btn-xs btn-warning" ng-click="removeGroup(employee)"><span>Fjern gruppe</span></button>
           <button type="button" class="btn-xs btn-danger" ng-click="deleteEmployee(employee.employeeID)"><span>Slett</span></button>
           <button type="button" class="btn-xs btn-primary" ng-click="updateEmployee(employee)"><span>Rediger</span></button>
           <button type="button" class="btn-xs btn-info" ng-click="employeeGroup(employee)"><span>Grupper</span></button>

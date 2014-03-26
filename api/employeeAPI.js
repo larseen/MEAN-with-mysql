@@ -28,7 +28,7 @@ exports.employee = function(req, res, next, id) {
 
 
 /**
-* Create a employee
+* Adds group
 **/
 exports.addGroup = function(req, res) {
     var groupEmployee= req.body;
@@ -36,6 +36,23 @@ exports.addGroup = function(req, res) {
     db.query('INSERT INTO calendar.employeeGroup SET ?', groupEmployee, function(err, rows){
         if (err) {
             throw err;
+        } else {
+            res.jsonp(rows);
+        }
+    });
+};
+
+/**
+* Removes Group
+**/
+exports.removeGroup = function(req, res) {
+    var groupEmployee = req.params;
+    console.log(groupEmployee);
+     db.query('DELETE FROM calendar.employeeGroup WHERE employeeID='+groupEmployee.employeeID+' AND groupID='+groupEmployee.groupID+';', function(err, rows, fields) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
         } else {
             res.jsonp(rows);
         }

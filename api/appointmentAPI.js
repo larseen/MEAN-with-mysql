@@ -29,11 +29,9 @@ exports.appointment = function(req, res, next, ID) {
 * Create a appointment
 **/
 exports.create = function(req, res) {
-  console.log(req.body);
   var appointment= req.body;
     db.query('INSERT INTO calendar.appointment SET ?', appointment, function(err, rows){
         if (err) {
-            console.log("ERROR");
             throw err;
         } else {
             res.jsonp(rows);
@@ -42,6 +40,17 @@ exports.create = function(req, res) {
 };
 
 
+exports.latestID = function(req, res) {
+    db.query('SELECT MAX(appointmentID) AS numb FROM calendar.appointment;', function(err, rows){
+        console.log(rows);
+        if (err) {
+            console.log("ERROR");
+            throw err;
+        } else {
+            res.jsonp(rows);
+        }
+    });
+};
 /**
 * Delete a appointment
 **/

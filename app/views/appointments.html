@@ -9,7 +9,8 @@
                 <tr>
                     <th><a href="" ng-click="predicate = 'displayName'; reverse=!reverse">ID</a></th>
                     <th><a href="" ng-click="predicate = 'appointmentname'; reverse=!reverse">Dato</a></th>
-                    <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Tid</a></th>
+                    <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Start tid</a></th>
+                    <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Slutt tid</a></th>
                     <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Deltagere</a></th>
                     <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Møterom</a></th>
                     <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Beskrivelse</a></th>
@@ -18,9 +19,9 @@
             <tbody>
                 <tr ng-repeat="appointment in appointments | filter:search | orderBy:predicate:reverse">
                     <td>{{appointment.appointmentID}}</td>
-                    <td>{{appointment.date}}</td>
-                    <td>{{appointment.starttime}}</td>
-                    <td>{{appointment.endtime}}</td>
+                    <td>{{appointment.date  | date:'yyyy-MM-dd'}}</td>
+                    <td>{{appointment.starttime | date:'HH:mm'}}</td>
+                    <td>{{appointment.endtime | date:'HH:mm'}}</td>
                     <td>{{appointment.participant}}</td>
                     <td>{{room.name}}</td>
                     <td>{{appointment.desc}}</td>

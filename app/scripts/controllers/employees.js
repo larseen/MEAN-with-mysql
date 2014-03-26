@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dbApp')
-  .controller('EmployeesCtrl', function ($scope, employeeFactory, $modal, $log, groupFactory) {
+  .controller('EmployeesCtrl', function ($scope, employeeFactory, $modal, $log, groupFactory, $timeout) {
     
     $scope.employees = []; // All employees
     $scope.employee; // Employee that is beeing edited
@@ -13,17 +13,29 @@ angular.module('dbApp')
         });
         $scope.groups = groupFactory.getGroups(function(){
         });
-        console.log($scope.groups);
-        console.log($scope.employees);
     };
 
  	$scope.deleteEmployee = function(ID){
     $scope.client = employeeFactory.getEmployee({employeeID: ID}, function(){
         $scope.client = $scope.client[0];
         $scope.client.$remove(function(){
+            });
         });
-    });
-    setTimeout($scope.init(),5000);
+        $timeout( function(){
+            $scope.init()
+        },200);
+    };
+
+
+    $scope.removeGroup = function(employee){
+        var req = {}
+        req.groupID = employee.groupID;
+        req.employeeID = employee.employeeID;
+        employeeFactory.removeGroup(req, function(){
+        });
+        $timeout( function(){
+            $scope.init()
+        },100);
     };
 
     $scope.createEmployee = function(employee){
@@ -32,22 +44,30 @@ angular.module('dbApp')
         employeeFactory.createEmployee(employee, function() {
 
         });
-    setTimeout($scope.init(),5000);
+        $timeout( function(){
+            $scope.init()
+        },100);
     };
 
     $scope.editEmployee = function(employee){
         console.log(employee)
+        delete employee.groupID;
+        delete employee.name;
         employeeFactory.editEmployee(employee, function() {
 
         });
-    setTimeout($scope.init(),5000);
+        $timeout( function(){
+            $scope.init()
+        },100);
     };
 
     $scope.groupEmployee = function(groupEmployee){
         console.log(groupEmployee)
         employeeFactory.groupEmployee(groupEmployee, function() {
         });
-    setTimeout($scope.init(),5000);
+        $timeout( function(){
+            $scope.init()
+        },100);
     };
 
     $scope.updateEmployee = function(employee){
@@ -92,6 +112,6 @@ angular.module('dbApp')
     };
 
 
-    setTimeout($scope.init(),5000);
+    $scope.init();
 
   });
