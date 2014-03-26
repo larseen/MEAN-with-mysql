@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dbApp').factory('appointmentFactory', function($resource) {
+angular.module('dbApp').factory('appointmentFactory', function($resource, $q) {
         
     return $resource('appointments/:appointmentID/:latest',
         { 
@@ -27,9 +27,24 @@ angular.module('dbApp').factory('appointmentFactory', function($resource) {
             },
             'getLatestID': {
                 method      : 'POST',
-                isArray     : true,
+                isArray     : false,
                 params      : {latest: 'latest'}
             }
         }
     );
+
+    functions.getLatestID = function() {
+        var deferred = $q.defer();
+        appointmentFactory.getLatestID(
+            function(successResponse){
+                console.log("success");
+                deferred.resolve(successResponse);
+            },function(errorResponse){
+                console.log("error");
+                deferred.reject(errorResponse);
+            }
+        );
+    return deferred.promise;
+    }
+
     });

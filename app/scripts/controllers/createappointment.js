@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dbApp')
-  .controller('CreateappointmentCtrl', function ($scope, employeeFactory, roomFactory, groupFactory, appointmentFactory, $timeout) {
+  .controller('CreateappointmentCtrl', function ($scope, employeeFactory, roomFactory, groupFactory, appointmentFactory, $timeout, $q) {
   
     $scope.employees = [];
     $scope.rooms = [];
@@ -27,26 +27,27 @@ angular.module('dbApp')
         },200);
     };
 
-    $scope.getLatestID = function() {
-        return appointmentFactory.getLatestID(function() {});
-    }
 
     $scope.createdBy = function(creatorID) {
-        var appointmentID = $scope.getLatestID();
+        var appointmentID = [];
+        appointmentID = appointmentFactory.getLatestID();
+        console.log(appointmentID);
+        console.log(appointmentID);
+        console.log(appointmentID.numb);
         console.log(creatorID);
     }
 
     $scope.inviteParticipants = function(employees){
-        var appointmentID = $scope.getLatestID();
-        console.log(appointmentID);
+        var appID = appointmentFactory.getLatestID();
+        console.log(appID.appointmentID);
         if(!employees==null){
             
         };
     };
 
     $scope.inviteGroups = function(groups){
-        var appointmentID = $scope.getLatestID();
-        console.log(appointmentID);
+        var appointmentID = appointmentFactory.getLatestID();
+        console.log(appointmentID.numb);
         if(!groups==null){
 
         };

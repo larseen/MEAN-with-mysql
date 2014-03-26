@@ -41,13 +41,13 @@ exports.create = function(req, res) {
 
 
 exports.latestID = function(req, res) {
-    db.query('SELECT MAX(appointmentID) AS numb FROM calendar.appointment;', function(err, rows){
-        console.log(rows);
+    db.query('SELECT MAX(appointmentID) AS id FROM calendar.appointment;', function(err, rows){
+        console.log(rows[0]);
         if (err) {
             console.log("ERROR");
             throw err;
         } else {
-            res.jsonp(rows);
+            res.jsonp(rows[0]);
         }
     });
 };
