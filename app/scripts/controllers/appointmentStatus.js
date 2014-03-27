@@ -20,9 +20,9 @@ angular.module('dbApp')
 
   $scope.getNumberOfParticipants = function(){
     var lenght = 0;
-    for (var i = $scope.participants.length - 1; i >= 0; i--) {
+      for (var i = $scope.participants.length - 1; i >= 0; i--) {
       lenght += 1;
-    };
+    }
     $scope.numberOfParticipants = lenght;
   }
 

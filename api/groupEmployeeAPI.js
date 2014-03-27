@@ -18,8 +18,8 @@ db.connect();
 **/
 exports.getEmployeeIDs = function(req, res) {
     groupID = req.params
-    console.log(groupID.groupIDs);
-    db.query('SELECT employeeID FROM calendar.employeeGroup WHERE groupID IN ('+groupID.groupIDs+') GROUP BY employeeID;', function(err, rows, fields) {
+    console.log(groupID);
+    db.query('SELECT employeeID FROM calendar.employeeGroup WHERE groupID IN ('+groupID.groupID+') GROUP BY employeeID;', function(err, rows, fields) {
         console.log(rows);
         if (err) {
             console.log("ERROR");

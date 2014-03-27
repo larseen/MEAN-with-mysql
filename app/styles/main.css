@@ -1,5 +1,57 @@
+
+.groupView{
+  width: 100%;
+  height: 50%;
+}
+
+.linePad{
+  padding-top: 10px;
+}
+
+form[novalidate] input {
+  border-left-width: 4px;
+  border-color: #3498db;
+  border-style: solid;
+}
+
+select[required].ng-pristine {
+  border-color: #e74c3c;
+}
+
+select.ng-invalid.ng-dirty {
+  border-color: #e74c3c;
+}
+
+select.ng-valid.ng-dirty {
+  border-color: #2ecc71;
+}
+
+input[required].ng-pristine {
+  border-color: #e74c3c;
+}
+
+input.ng-invalid.ng-dirty {
+  border-color: #e74c3c;
+}
+
+input.ng-valid.ng-dirty {
+  border-color: #2ecc71;
+}
+
+.dateWell[required].ng-pristine {
+  border-color: #e74c3c;
+}
+
+.dateWell.ng-invalid.ng-dirty {
+  border-color: #e74c3c;
+}
+
+.dateWell.ng-valid.ng-dirty {
+  border-color: #2ecc71;
+}
+
 .divPadder {
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .myTime {

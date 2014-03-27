@@ -2,8 +2,14 @@
     <h2>Status appointment {{appointment.appointmentID}}</h2>
 </div>
 <div class="modal-body">
-    <h3>Created by: {{creator.username}}</h3>
-    <h3>People invited: {{ numberOfParticipants}}</h3>
+    <h4>Created by: {{creator.username}}</h4>
+    <h4>People invited: {{ numberOfParticipants}}</h4>
+    <h5>Meeting room: {{appointment.name}}</h5>
+    <h5>Start: {{appointment.starttime | date:'HH:mm EEEE d.MM.y'}}</h5>
+    <h5>End: {{appointment.starttime | date:'HH:mm EEEE d.MM.y'}}</h5>
+    <legend class="linePad">Description</legend>
+    {{appointment.desc}}
+    <legend class="linePad"></legend>
     <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -18,12 +24,15 @@
         <td>{{employee.employeeID.employeeID}}</td>
         <td>{{employee.employeeID.username}}</td>
         <td>{{employee.employeeID.name}}</td>
-        <td>{{employee.status}}</td>
+        <td>
+          <span ng-if="employee.status == 0" class="label label-danger">Not attending</span>
+          <span ng-if="employee.status == 1" class="label label-success">Attending</span>
+          <span ng-if="employee.status === null" class="label label-warning">Not replied</span>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="alter()">Ok</button>
-    <button class="btn btn-warning" ng-click="cancel()">Avbryt</button>
 </div>

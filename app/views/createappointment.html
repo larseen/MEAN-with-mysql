@@ -1,56 +1,85 @@
 <div class="container">
-	<form class="form-horizontal">
-	<!-- Form Name -->
-	<legend>Create Appointment</legend>
+	<form class="form-horizontal" ng-submit="createAppointment(appointment)" name="form" novalidate>
+		</br>
+		<legend>Create Appointment</legend>
+		<div>
+			<label class="control-label" for="creator">Appointment created by:</label>
+			<select ng-model="appointment.creator" name="creator" class="form-control" ng-options="e.username for e in employees" required>
+				<option value="">Select user</option>
+			</select>
+			<span ng-show="form.creator.$error.required">Select user</span>
+		</div>
 
-	<div>
-		<label class="control-label" for="creator">Appointment created by:</label>
-		<select ng-model="appointment.creator" class="form-control" ng-options="e.username for e in employees"></select>
-	</div>
+		<div class="divPadder">
+			<label class="control-label" for="room">Room</label>
+			<select ng-model="appointment.room" name="room" class="form-control" ng-options="room.name for room in rooms" required>
+				<option value="">Select room</option>
+			</select>
+			<span ng-show="form.room.$error.required">Select room</span>
+			</select>
+		</div>
 
-	<div class="divPadder">
-		<label class="control-label" for="room">Room</label>
-		<select ng-model="appointment.room" class="form-control" ng-options="room.name for room in rooms"></select>
-	</div>
+		<div class="divPadder">
+			<label class="control-label" for="date">Select date and time for appointment</label>
+		  	<div class="well">
+		  		<div class="row">
+      				<div class='col-xs-4 col-xs-offset-1'>
+            			<div class="form-group">
+                			<div class='input-group date' id='datetimepicker8'>
+                    			<input type='text' ng-model="appointment.starttime" name="starttime" class="form-control" required/>
+                    			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                			</div>
+            			<span ng-show="form.starttime.$error.required">Select start</span>
+            			</div>
+        			</div>
+        			<div class='col-xs-4 col-xs-offset-1'>
+            			<div class="form-group">
+                			<div class='input-group date' id='datetimepicker9'>
+			                    <input type='text' ng-model="appointment.endtime" name="endtime" class="form-control" required/>
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                			</div>
+            			<span ng-show="form.endtime.$error.required">Select end</span>
+            			</div>
+        			</div>
+    			</div>
+			    <script type="text/javascript">
+			        $(function () {
+			            $('#datetimepicker8').datetimepicker();
+			            $('#datetimepicker9').datetimepicker();
+			            $("#datetimepicker8").on("dp.change",function (e) {
+			               $('#datetimepicker9').data("DateTimePicker").setMinDate(e.date);
+			            });
+			            $("#datetimepicker9").on("dp.change",function (e) {
+			               $('#datetimepicker8').data("DateTimePicker").setMaxDate(e.date);
+			            });
+			        });
+			    </script>
+			</div>
+		</div>
+		 
 
-    <div style="display:inline-block; min-height:300px;" class="divPadder">
-    <label class="control-label" for="date">Date</label>
-      <div class="well" >
-          <datepicker min="minDate" datepicker-popup="yyyy-MM-dd"  ng-model="appointment.date" show-weeks="showWeeks"></datepicker>
-      </div>
-    </div>
+		<!-- Select Multiple -->
+		<div class="divPadder">
+		  	<label class="control-label" for="participants">Participants</label>
+		  	<select ng-model="appointment.usernames" multiple="multiple" name="groups" name="participants" class="form-control" ng-options="employee.username for employee in employees" required>
+		      	<option value="">Select participants</option>
+			</select>
+			<span ng-show="form.participants.$error.required">Select user</span>
+		</div>
+		<div class="divPadder">
+		  	<label class="control-label" for="participants">Groups</label>
+		    <select ng-model="appointment.groups" multiple="multiple" name="groups" name="participants" class="form-control" ng-options="group.name for group in groups">
+		      	<option value="">Select groups</option>
+			</select>
+		</div>
 
-	<!-- Starttime-->
-	<div>
-
-	    <div class="myTime" ng-model="appointment.starttime" ng-change="changed()" style="display:inline-block;">
-	    	<label class="control-label" for="participants">Start time</label>
-        	<timepicker hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
-  		</div>
-  		  <div class="myTime" ng-model="appointment.endtime" ng-change="changed()" style="display:inline-block;">
-  		  	<label class="control-label" for="participants">End time</label>
-        	<timepicker hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
-  		</div>
-	</div>
-
-	<!-- Select Multiple -->
-	<div class="divPadder">
-	  <label class="control-label" for="participants">Participants</label>
-	      <select ng-model="appointment.usernames" multiple="multiple" class="form-control" ng-options="employee.username for employee in employees"></select>
-	</div>
-	<div class="divPadder">
-	  <label class="control-label" for="participants">Groups</label>
-	      <select ng-model="appointment.groups" multiple="multiple" class="form-control" ng-options="group.name for group in groups"></select>
-	</div>
-
-	<!-- Text area -->
-	<div class="divPadder">
-	  <label class="control-label" for="desc">Description</label>
-	      <textarea class="form-control" ng-model="appointment.desc" id="desc" type="text" rows="3" class="input-xlarge" ></textarea>
-	</div>
-
+		<!-- Text area -->
+		<div class="divPadder">
+		  	<label class="control-label" for="desc">Description</label>
+		    <textarea class="form-control" ng-model="appointment.desc" id="desc" type="text" rows="3" class="input-xlarge" ></textarea>
+		</div>
 	</form>
 	<div class="divPadder">
-		<button type="button" class="btn btn-primary btn-block" ng-click="createAppointment(appointment)"><b>Create appointment</b></button>
+		<button type="button" class="btn btn-primary btn-block" ng-disabled='form.$invalid' ng-click="createAppointment(appointment)"><b>Create appointment</b></button>
 	</div>
 </div>

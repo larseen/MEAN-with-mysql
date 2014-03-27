@@ -8,12 +8,60 @@ angular.module('dbApp')
     $scope.groups = [] // All groups
 
     $scope.init = function(){
+        $scope.getEmployees(); 
+        $scope.getGroups(); 
         console.log("init");
-        $scope.employees = employeeFactory.getEmployees(function(){
-        });
-        $scope.groups = groupFactory.getGroups(function(){
-        });
+        $timeout( function(){
+            $scope.employees = $scope.processEmployees();
+            console.log($scope.employees);
+        },140);
     };
+
+    $scope.getEmployees = function(){
+        employeeFactory.getEmployees(
+            function(successResponse) {
+            $scope.employees = successResponse;
+            console.log(successResponse);
+        }, 
+        function(errorResponse) {
+            console.log(errorResponse);
+        });
+    }
+
+    $scope.getGroups = function(){
+        groupFactory.getGroups(
+            function(successResponse) {
+            $scope.groups = successResponse;
+            console.log(successResponse);
+        }, 
+        function(errorResponse) {
+            console.log(errorResponse);
+        });
+    }
+
+    $scope.processEmployees = function(){
+        var employees = []
+        var tempID = []
+        for (var i = $scope.employees.length - 1; i >= 0; i--) {
+            if(tempID.indexOf($scope.employees[i].employeeID)>0){
+                var temp = {name: $scope.employees[i].name, groupID: $scope.employees[i].groupID};
+                for (var t = employees.length - 1; t >= 0; t--) {
+                    if(employees[t].employeeID==$scope.employees[i].employeeID){
+                        employees[t].groups.push(temp);       
+                    };
+                };
+            }else{
+            var temp = {name: $scope.employees[i].name, groupID: $scope.employees[i].groupID};
+            delete $scope.employees[i].name;
+            $scope.employees[i].groups = [];
+            $scope.employees[i].groups.push(temp);
+            tempID.push($scope.employees[i].employeeID);
+            employees.push($scope.employees[i]);
+;
+            }   
+        };
+        return employees;
+    }
 
  	$scope.deleteEmployee = function(ID){
     $scope.client = employeeFactory.getEmployee({employeeID: ID}, function(){

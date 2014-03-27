@@ -116,7 +116,6 @@ angular.module('dbApp')
 
     $scope.createAppointment = function(appointment){
         var app = {};
-        app.date = Date.parse(appointment.date);
         app.bookedID = appointment.room.roomID;
         app.starttime = Date.parse(appointment.starttime);
         app.endtime = Date.parse(appointment.endtime);
@@ -135,6 +134,8 @@ angular.module('dbApp')
             $scope.inviteParticipants();
         },100);
     };
+
+
 
     $scope.init();
 

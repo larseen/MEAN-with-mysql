@@ -8,9 +8,8 @@
             <thead>
                 <tr>
                     <th><a href="" ng-click="predicate = 'displayName'; reverse=!reverse">ID</a></th>
-                    <th><a href="" ng-click="predicate = 'appointmentname'; reverse=!reverse">Dato</a></th>
                     <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Start tid</a></th>
-                    <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Slutt tid</a></th>
+                    <th><a href="" ng-click="predicate = 'userTypeAccess'; reverse=!reverse">Dato</a></th>
                     <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse">Møterom</a></th>
                     <th><a href="" ng-click="predicate = 'balance'; reverse=!reverse"></a></th>
                 </tr>
@@ -18,9 +17,8 @@
             <tbody>
                 <tr ng-repeat="appointment in appointments | filter:search | orderBy:predicate:reverse">
                     <td>{{appointment.appointmentID}}</td>
-                    <td>{{appointment.date  | date:'yyyy-MM-dd'}}</td>
-                    <td>{{appointment.starttime | date:'HH:mm'}}</td>
-                    <td>{{appointment.endtime | date:'HH:mm'}}</td>
+                    <td>{{appointment.starttime | date:'HH:mm EEEE'}}</td>
+                    <td>{{appointment.starttime | date:'d.MM.y'}}</td>
                     <td>{{appointment.name}}</td>
                     <td><button type="button" class="btn-xs btn-primary" ng-click="checkStatus(appointment.appointmentID)"><span>Status</span></button></td>
                 </tr>
