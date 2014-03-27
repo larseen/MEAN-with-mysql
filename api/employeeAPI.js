@@ -136,7 +136,7 @@ exports.show = function(req, res) {
 * List all employees
 **/
 exports.all = function(req, res) {
-    db.query('SELECT * FROM calendar.group JOIN calendar.employeeGroup ON employeeGroup.groupID=group.groupID RIGHT JOIN calendar.employee ON employee.employeeID=employeeGroup.employeeID;', function(err, rows, fields) {
+    db.query('SELECT employee.username, employee.employeeID, employee.password, group.groupID, group.name FROM calendar.employee LEFT JOIN calendar.employeeGroup ON employee.employeeID=employeeGroup.employeeID LEFT JOIN calendar.group ON employeeGroup.groupID=group.groupID;', function(err, rows, fields) {
         if (err) {
             res.render('error', {
                 status: 500

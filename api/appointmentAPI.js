@@ -99,7 +99,7 @@ exports.show = function(req, res) {
 * List all appointments
 **/
 exports.all = function(req, res) {
-    db.query('SELECT * FROM calendar.appointment RIGHT JOIN calendar.room ON appointment.bookedID=room.roomID RIGHT JOIN calendar.participants ON appointment.appointmentID=participants.appointmentID RIGHT JOIN calendar.employee ON employee.employeeID=participants.employeeID;', function(err, rows, fields) {
+    db.query('SELECT appointment.appointmentID, appointment.date, appointment.starttime, appointment.endtime, appointment.desc, room.roomID, room.name, createdBy.employeeID FROM calendar.appointment JOIN calendar.room ON appointment.bookedID = room.roomID LEFT JOIN calendar.createdBy ON appointment.appointmentID=createdBy.appointmentID;', function(err, rows, fields) {
         console.log(rows);
         if (err) {
             res.render('error', {

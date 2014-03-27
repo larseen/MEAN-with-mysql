@@ -54,4 +54,7 @@ module.exports = function(app) {
 	var employeeGroups = require('../api/groupEmployeeAPI')
 	app.get('/groupEmployees/:groupID', employeeGroups.getEmployeeIDs);
 
+	var invites = require('../api/participantsAPI')
+	app.get('/participants', invites.getInvites);
+
 };

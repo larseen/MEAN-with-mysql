@@ -1,15 +1,27 @@
 <div class="modal-header">
-    <h2>Endre Ansatt</h2>
+    <h2>Status appointment {{appointment.appointmentID}}</h2>
 </div>
 <div class="modal-body">
-    <div class="form-group" class="col-md-12">
-        <label for="employeeName">Username</label>
-        <input type="text" class="form-control" id="username" ng-model="employee.username">
-    </div>
-    <div class="form-group" class="col-md-12" >
-        <label for="employeeID">Password</label>
-        <input type="text" class="form-control" id="password" ng-model="employee.password">
-    </div>
+    <h3>Created by: {{creator.username}}</h3>
+    <h3>People invited: {{ numberOfParticipants}}</h3>
+    <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a>ID</a></th>
+        <th><a>Username</a></th>
+        <th><a>Group</a></th>
+        <th><a>Status</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="employee in appointment.participants">
+        <td>{{employee.employeeID.employeeID}}</td>
+        <td>{{employee.employeeID.username}}</td>
+        <td>{{employee.employeeID.name}}</td>
+        <td>{{employee.status}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="alter()">Ok</button>

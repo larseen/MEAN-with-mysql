@@ -21,8 +21,8 @@
                     <td>{{appointment.date  | date:'yyyy-MM-dd'}}</td>
                     <td>{{appointment.starttime | date:'HH:mm'}}</td>
                     <td>{{appointment.endtime | date:'HH:mm'}}</td>
-                    <td>{{room.name}}</td>
-                    <td><button type="button" class="btn-xs btn-primary" ng-click="checkStatus(appointment)"><span>Status</span></button></td>
+                    <td>{{appointment.name}}</td>
+                    <td><button type="button" class="btn-xs btn-primary" ng-click="checkStatus(appointment.appointmentID)"><span>Status</span></button></td>
                 </tr>
             </tbody>
         </table>

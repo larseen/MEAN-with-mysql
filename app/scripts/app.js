@@ -6,7 +6,7 @@ angular.module('dbApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'ngLocale'
+  'ngLocale',
 ])
   .config(function ($routeProvider) {
     $routeProvider
