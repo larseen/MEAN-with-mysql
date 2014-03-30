@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h2>Appointment invites</h2>
+</div>
+<div class="modal-body">
+    <h3>User: {{employee.username}}</h3>
+    <legend class="linePad">Appointments</legend>
+      <div ng-repeat="appointment in appointments">
+      	<div ng-class="{'panel panel-warning' : appointment.status==null, 'panel panel-success' : appointment.status==1, 'panel panel-danger' : appointment.status==0}">
+      		<div class="panel-heading">
+      			<h3 class="panel-title">Appointment ID: {{appointment.appointmentID}}</h3>
+      		</div>
+      		<div class="panel-body">
+      			<h5>Meeting room: {{appointment.name}}</h5>
+    			<h5>Start: {{appointment.starttime | date:'HH:mm EEEE d.MM.y'}}</h5>
+    			<h5>End: {{appointment.starttime | date:'HH:mm EEEE d.MM.y'}}</h5>
+    			<h5>Description: {{appointment.desc}}</h5>
+      			<label class="control-label" for="status">Status</label>
+				<select ng-model="appointment.status" name="status" class="form-control">
+					<option value="" ng-selected="appointment.status">Not replied</option>
+					<option value="0" ng-selected="appointment.status">Not attending</option>
+					<option value="1" ng-selected="appointment.status">Attending</option>
+					{{status}}
+				</select>
+      		</div>
+      	</div>
+      </div>
+   </div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="alter()">Ok</button>
+</div>

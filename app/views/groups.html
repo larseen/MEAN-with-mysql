@@ -1,29 +1,32 @@
-<h2>Opprett ny gruppe</h2>
+<legend>Create new group</legend>
 <div class="form-group" class="col-md-12">
-  <label for="groupName">Gruppe navn</label>
+  <label for="groupName">Group name</label>
   <input type="text" class="form-control" id="name" ng-model="group.name">
 </div>
-<button type="button" class="btn btn-primary btn-block" ng-click="createGroup(group)"><b>Opprett ny gruppe</b></button>
+<button type="button" class="btn btn-primary btn-block" ng-click="createGroup(group)"><b>Create new group</b></button>
+<div class="divPadder">
 <div class="row">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
         <th><a>ID</a></th>
-        <th><a>Navn</a></th>
-        <th><a>Antall i gruppen</a></th>
-        <th><a>Administrer</a></th>
+        <th><a>Group name</a></th>
+        <th><a>Participants</a></th>
+        <th><a>More</a></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="group in groups">
         <td>{{group.groupID}}</td>
         <td>{{group.name}}</td>
-        <td>{{group.capacity}}</td>
+        <td>{{group.participants}}</td>
         <td>
-          <button type="button" class="btn-xs btn-danger" ng-click="deleteGroup(group.groupID)"><span>Slett</span></button>
-          <button type="button" class="btn-xs btn-primary" ng-click="updateGroup(group)"><span>Rediger</span></button>
+          <button type="button" class="btn-xs btn-warning" ng-click="groupStats(group)"><span>Members</span></button>
+          <button type="button" class="btn-xs btn-primary" ng-click="updateGroup(group)"><span>Edit</span></button>
+          <button type="button" class="btn-xs btn-danger" ng-click="deleteGroup(group.groupID)"><span>Delete</span></button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
 </div>

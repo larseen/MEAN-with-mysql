@@ -57,7 +57,7 @@ angular.module('dbApp')
             $scope.employees[i].groups.push(temp);
             tempID.push($scope.employees[i].employeeID);
             employees.push($scope.employees[i]);
-;
+            ;
             }   
         };
         return employees;
@@ -75,15 +75,24 @@ angular.module('dbApp')
     };
 
 
-    $scope.removeGroup = function(employee){
-        var req = {}
-        req.groupID = employee.groupID;
-        req.employeeID = employee.employeeID;
-        employeeFactory.removeGroup(req, function(){
+    $scope.checkInvites = function(employeeID){
+        console.log(employeeID);
+        var modalInstance = $modal.open({
+          templateUrl: 'views/checkinvites.html',
+          controller: 'CheckinvitesCtrl',
+            resolve: {
+                employeeID: function () {   //sends the employee to the controller
+                    return employeeID;
+                }
+            }
         });
-        $timeout( function(){
-            $scope.init()
-        },100);
+        console.log(modalInstance);
+        console.log('modal opened');
+        modalInstance.result.then(function (response) {
+        $scope.editEmployee(response);
+    }, function () {
+      $log.info('Modal dismissed at');
+        });
     };
 
     $scope.createEmployee = function(employee){

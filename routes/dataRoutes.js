@@ -56,5 +56,6 @@ module.exports = function(app) {
 
 	var invites = require('../api/participantsAPI')
 	app.get('/participants', invites.getInvites);
+	app.get('/participants/:employeeID', invites.getInvitesByID);
 
 };

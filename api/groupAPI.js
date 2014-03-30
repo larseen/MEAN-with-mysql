@@ -25,7 +25,6 @@ exports.group = function(req, res, next, ID) {
     });
 };
 
-
 /**
 * Create a group
 **/
@@ -86,7 +85,7 @@ exports.show = function(req, res) {
 * List all groups
 **/
 exports.all = function(req, res) {
-    db.query('SELECT * FROM Calendar.group as groups', function(err, rows, fields) {
+    db.query('SELECT group.groupID, group.name, employee.username FROM Calendar.group LEFT JOIN calendar.employeeGroup ON group.groupID=employeeGroup.groupID LEFT JOIN calendar.employee ON employee.employeeID=employeeGroup.employeeID;', function(err, rows, fields) {
         if (err) {
             res.render('error', {
                 status: 500

@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h2>Group: {{group.name}}</h2>
+</div>
+	<div class="modal-body">
+    	<h3>Members</h3>
+    	<table class="table table-striped table-hover">
+    	<tbody>
+      	<tr ng-repeat="user in group.employees">
+	        <td>{{user.username}}</td>
+      	</tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="alter()">Ok</button>
+</div>

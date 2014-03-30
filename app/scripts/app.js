@@ -46,6 +46,18 @@ angular.module('dbApp', [
         templateUrl: 'views/groupemployee.html',
         controller: 'GroupemployeeCtrl'
       })
+      .when('/checkInvites', {
+        templateUrl: 'views/checkinvites.html',
+        controller: 'CheckinvitesCtrl'
+      })
+      .when('/checkInvites', {
+        templateUrl: 'views/checkinvites.html',
+        controller: 'CheckinvitesCtrl'
+      })
+      .when('/groupInfo', {
+        templateUrl: 'views/groupinfo.html',
+        controller: 'GroupinfoCtrl'
+      })
       .otherwise({
         redirectTo: '/home'
       });
